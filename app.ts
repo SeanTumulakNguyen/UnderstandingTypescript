@@ -14,3 +14,10 @@ const printResult = true;
 const resultPhrase = "Result is: ";
 
 add(number1, number2, printResult, resultPhrase);
+
+const person = {
+  name: 'Sean',
+  age: 30
+}
+
+console.log(person.nickname)
