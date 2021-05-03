@@ -1,13 +1,5 @@
+let age;
+age = 30;
+const userName = "Maximilian";
 
-// unknown type
-let userInput: unknown;
-let userName: string;
-
-userInput = 5;
-userInput = "Max";
-if (typeof userInput === 'string') {
-    userName = userInput;
-}
-
-
-// never type
+console.log(userName);
