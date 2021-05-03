@@ -1,38 +1,13 @@
-// Return types
-const add = (n1: number, n2: number) => {
-  return n1 + n2;
-};
 
-// Void types
-// does not return content - no errors
-// functions are not allowed to return undefined
-// use void NEVER undefined when using a function that doesn't return a value
-const printResult = (num: number): void => {
-  console.log("Result: " + num);
-};
+// unknown type
+let userInput: unknown;
+let userName: string;
 
-printResult(add(5, 12));
-
-// undefined is a valid type
-// let someValue: undefined;
-
-// Function types
-// let combineValues: Function;
-let combineValues: (a: number, b: number) => number;
-
-combineValues = add;
-// combineValues = 5;
-// combineValues = printResult;
-
-console.log(combineValues(8, 8));
+userInput = 5;
+userInput = "Max";
+if (typeof userInput === 'string') {
+    userName = userInput;
+}
 
 
-// Function Types and CallBacks
-const addAndHandle = (n1: number, n2: number, cb: (num: number) => void) => {
-  const result = n1 + n2;
-  cb(result);
-};
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-});
+// never type
