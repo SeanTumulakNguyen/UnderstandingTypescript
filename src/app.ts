@@ -40,4 +40,18 @@ if (button) {
 // so that only one parameter is needed
 const ticket = (a: number, b: number = 1) => a + b;
 // order of parameters matter
-printOutput(ticket(6))
+printOutput(ticket(6));
+
+const hobbies = ["Sports", "Cooking"];
+const activeHobbies = ["Hiking"];
+
+// using spread operator
+activeHobbies.push(...hobbies);
+
+const aPerson = {
+  name: "Max",
+  age: 30,
+};
+
+// pulling all the key pairs from aPerson
+const copiedPerson = { ...aPerson };
