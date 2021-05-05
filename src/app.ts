@@ -55,3 +55,18 @@ const aPerson = {
 
 // pulling all the key pairs from aPerson
 const copiedPerson = { ...aPerson };
+
+// rest parameters
+const addRest = (...numbers: number[]) => {
+    // using reduce method
+    // two parameters, the result and then the value
+    // reduce does function on every item in array
+  return numbers.reduce((curResult, curValue) => {
+    return curResult + curValue;
+  }, 0);
+};
+
+// can use tuples such as [number, number, number] to only take three parameters
+
+const addRestNumbers = addRest(5, 10, 2, 3.7);
+console.log(addRestNumbers);
