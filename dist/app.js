@@ -15,10 +15,17 @@ if (age > 20) {
 // arrow function
 const addForLet = (a, b) => a + b;
 console.log(addForLet(2, 5));
-const printOutput = output => console.log(output);
+const printOutput = (output) => console.log(output);
 printOutput(addForLet(5, 2));
-const buttonPress = document.querySelector('button');
+const buttonPress = document.querySelector("button");
 if (button) {
     // if no parameters, use have to use pair of empty parentheses
-    button.addEventListener('click', (event) => { console.log(event); });
+    button.addEventListener("click", (event) => {
+        console.log(event);
+    });
 }
+// default function parameters
+// so that only one parameter is needed
+const ticket = (a, b = 1) => a + b;
+// order of parameters matter
+printOutput(ticket(6));
