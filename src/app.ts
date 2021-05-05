@@ -1,16 +1,10 @@
 // Code goes here
 
-const userName = "Max"
+const userName = "Max";
 // constants can't be changed
 let age = 30;
 
 age = 29;
-
-const addForLet = (a: number, b: number) => {
-  let result;
-  result = a + b;
-  return result;
-}
 
 // console.log(result)
 if (age > 20) {
@@ -22,3 +16,19 @@ if (age > 20) {
 // console.log(isOld);
 
 // let and const allows block scope
+
+// arrow function
+const addForLet = (a: number, b: number) => a + b;
+
+console.log(addForLet(2, 5));
+
+const printOutput: (a: number | string) => void = output => console.log(output);
+
+printOutput(addForLet(5, 2));
+
+const buttonPress = document.querySelector('button')
+
+if (button) {
+  // if no parameters, use have to use pair of empty parentheses
+  button.addEventListener('click', (event) => {console.log(event)})
+}
