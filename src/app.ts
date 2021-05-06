@@ -2,14 +2,14 @@
 
 const userName = "Max";
 // constants can't be changed
-let age = 30;
+// let age = 30;
 
-age = 29;
+// age = 29;
 
-// console.log(result)
-if (age > 20) {
-  let isOld = true;
-}
+// // console.log(result)
+// if (age > 20) {
+//   let isOld = true;
+// }
 
 // fails in typescipt and not javascript
 // if using var, variable is able to seen globally
@@ -29,9 +29,9 @@ printOutput(addForLet(5, 2));
 
 const buttonPress = document.querySelector("button");
 
-if (button) {
+if (buttonPress) {
   // if no parameters, use have to use pair of empty parentheses
-  button.addEventListener("click", (event) => {
+  buttonPress.addEventListener("click", (event) => {
     console.log(event);
   });
 }
@@ -49,7 +49,7 @@ const activeHobbies = ["Hiking"];
 activeHobbies.push(...hobbies);
 
 const aPerson = {
-  name: "Max",
+  firstName: "Max",
   age: 30,
 };
 
@@ -58,9 +58,9 @@ const copiedPerson = { ...aPerson };
 
 // rest parameters
 const addRest = (...numbers: number[]) => {
-    // using reduce method
-    // two parameters, the result and then the value
-    // reduce does function on every item in array
+  // using reduce method
+  // two parameters, the result and then the value
+  // reduce does function on every item in array
   return numbers.reduce((curResult, curValue) => {
     return curResult + curValue;
   }, 0);
@@ -70,3 +70,15 @@ const addRest = (...numbers: number[]) => {
 
 const addRestNumbers = addRest(5, 10, 2, 3.7);
 console.log(addRestNumbers);
+
+// array and object destructuring
+
+// array destructuring
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+
+console.log(hobbies, hobby1, hobby2);
+
+// object destructuring
+const { firstName: userFirstName, age } = aPerson;
+
+console.log(userFirstName);
