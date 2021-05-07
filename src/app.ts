@@ -34,8 +34,32 @@ class Department {
 const accounting = new Department("D1", "Accounting");
 console.log(accounting);
 
+class ITDepartment extends Department {
+  // inheriting from Department
+  constructor(id: string, public admins: string[]) {
+    super(id, "IT");
+    this.admins = admins;
+  }
+}
+
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");
+
+const tech = new ITDepartment("d1", ["Max"]);
+
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "IT");
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printeports() {
+    console.log(this.reports);
+  }
+}
 
 // this won't work because the variable is private
 // accounting.employees[2] = "Anna";
