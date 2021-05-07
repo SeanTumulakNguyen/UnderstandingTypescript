@@ -1,60 +1,34 @@
 "use strict";
-// Code goes here
-const userName = "Max";
-// constants can't be changed
-// let age = 30;
-// age = 29;
-// // console.log(result)
-// if (age > 20) {
-//   let isOld = true;
-// }
-// fails in typescipt and not javascript
-// if using var, variable is able to seen globally
-// console.log(isOld);
-// let and const allows block scope
-// arrow function
-const addForLet = (a, b) => a + b;
-console.log(addForLet(2, 5));
-const printOutput = (output) => console.log(output);
-printOutput(addForLet(5, 2));
-const buttonPress = document.querySelector("button");
-if (buttonPress) {
-    // if no parameters, use have to use pair of empty parentheses
-    buttonPress.addEventListener("click", (event) => {
-        console.log(event);
-    });
+// object orient programming (oop)
+// work with real-life entities in code
+// classes are bluprints for objects
+// define how objects look like, properties and methods they have
+// make creation of multiple, similar objects much easier
+class Department {
+    constructor(n) {
+        // private variables are only accessible from insite the class
+        this.employees = [];
+        this.name = n;
+    }
+    describe() {
+        console.log("Department: " + this.name);
+    }
+    addEmployee(employee) {
+        this.employees.push(employee);
+    }
+    printEmployeeInformation() {
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
 }
-// default function parameters
-// so that only one parameter is needed
-const ticket = (a, b = 1) => a + b;
-// order of parameters matter
-printOutput(ticket(6));
-const hobbies = ["Sports", "Cooking"];
-const activeHobbies = ["Hiking"];
-// using spread operator
-activeHobbies.push(...hobbies);
-const aPerson = {
-    firstName: "Max",
-    age: 30,
-};
-// pulling all the key pairs from aPerson
-const copiedPerson = Object.assign({}, aPerson);
-// rest parameters
-const addRest = (...numbers) => {
-    // using reduce method
-    // two parameters, the result and then the value
-    // reduce does function on every item in array
-    return numbers.reduce((curResult, curValue) => {
-        return curResult + curValue;
-    }, 0);
-};
-// can use tuples such as [number, number, number] to only take three parameters
-const addRestNumbers = addRest(5, 10, 2, 3.7);
-console.log(addRestNumbers);
-// array and object destructuring
-// array destructuring
-const [hobby1, hobby2, ...remainingHobbies] = hobbies;
-console.log(hobbies, hobby1, hobby2);
-// object destructuring
-const { firstName: userFirstName, age } = aPerson;
-console.log(userFirstName);
+const accounting = new Department("Accounting");
+console.log(accounting);
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+// this won't work because the variable is private
+// accounting.employees[2] = "Anna";
+accounting.describe();
+accounting.printEmployeeInformation();
+const accountingCopy = { name: "DUMMY", describe: accounting.describe };
+// accountingCopy.describe();
+// ^ constructor functions and using 'this' keyword
