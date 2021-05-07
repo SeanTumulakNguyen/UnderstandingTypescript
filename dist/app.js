@@ -5,10 +5,15 @@
 // define how objects look like, properties and methods they have
 // make creation of multiple, similar objects much easier
 class Department {
-    constructor(n) {
+    //explicitly choosing if private or public variables
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+        // publci variable, able to be accessed from outside
+        // name: string;
         // private variables are only accessible from insite the class
         this.employees = [];
-        this.name = n;
+        // this.name = n;
     }
     describe() {
         console.log("Department: " + this.name);
@@ -21,7 +26,7 @@ class Department {
         console.log(this.employees);
     }
 }
-const accounting = new Department("Accounting");
+const accounting = new Department("D1", "Accounting");
 console.log(accounting);
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");

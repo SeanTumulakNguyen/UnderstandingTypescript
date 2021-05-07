@@ -7,12 +7,13 @@
 
 class Department {
   // publci variable, able to be accessed from outside
-  name: string;
+  // name: string;
   // private variables are only accessible from insite the class
   private employees: string[] = [];
 
-  constructor(n: string) {
-    this.name = n;
+  //explicitly choosing if private or public variables
+  constructor(private id: string, public name: string) {
+    // this.name = n;
   }
 
   describe(this: Department) {
@@ -29,7 +30,7 @@ class Department {
   }
 }
 
-const accounting = new Department("Accounting");
+const accounting = new Department("D1", "Accounting");
 console.log(accounting);
 
 accounting.addEmployee("Max");
