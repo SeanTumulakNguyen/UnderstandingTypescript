@@ -6,6 +6,7 @@
 // make creation of multiple, similar objects much easier
 class Department {
     //explicitly choosing if private or public variables
+    // readonly exists only in typescipt, prevents variable from changing after initialized the first time
     constructor(id, name) {
         this.id = id;
         this.name = name;

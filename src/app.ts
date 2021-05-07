@@ -12,7 +12,8 @@ class Department {
   private employees: string[] = [];
 
   //explicitly choosing if private or public variables
-  constructor(private id: string, public name: string) {
+  // readonly exists only in typescipt, prevents variable from changing after initialized the first time
+  constructor(private readonly id: string, public name: string) {
     // this.name = n;
   }
 
