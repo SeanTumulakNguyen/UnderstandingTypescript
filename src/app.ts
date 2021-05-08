@@ -2,9 +2,13 @@
 // describes the structure of an object
 // how the object should look like
 
-interface Greetable {
-  // initialized only once
+interface Named {
   readonly name: string;
+}
+
+interface Greetable extends Named {
+  // initialized only once
+//   readonly name: string;
 
   greet(phrase: string): void;
 }
