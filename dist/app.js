@@ -16,6 +16,9 @@ class Department {
         this.employees = [];
         // this.name = n;
     }
+    static createEmployee(name) {
+        return { name: name };
+    }
     describe() {
         console.log("Department: " + this.name);
     }
@@ -74,6 +77,9 @@ class AccountingDepartment extends Department {
         console.log(this.reports);
     }
 }
+// call static variables
+const employee1 = Department.createEmployee("Max");
+console.log(employee1);
 const finance = new AccountingDepartment("d3", ["Max"]);
 // console log as property as it returns this.lastReport
 console.log(finance.mostRecentReport);
