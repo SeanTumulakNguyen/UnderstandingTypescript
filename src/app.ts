@@ -9,7 +9,7 @@ class Department {
   // publci variable, able to be accessed from outside
   // name: string;
   // private variables are only accessible from insite the class
-  private employees: string[] = [];
+  protected employees: string[] = [];
 
   //explicitly choosing if private or public variables
   // readonly exists only in typescipt, prevents variable from changing after initialized the first time
@@ -50,6 +50,13 @@ const tech = new ITDepartment("d1", ["Max"]);
 class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, "IT");
+  }
+
+  addEmployee(name: string) {
+    if (name === 'Max') {
+      return;
+    }
+    this.employees.push(name)
   }
 
   addReport(text: string) {
