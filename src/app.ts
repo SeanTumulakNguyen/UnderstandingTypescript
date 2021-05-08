@@ -40,6 +40,15 @@ function addGuard(a: CombinableIntersection, b: CombinableIntersection) {
 const resultGuard = addGuard("Max", "Schwarz");
 resultGuard.split(" ");
 
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: { title: 'CEO', description: 'My own company'}
+}
+
+// optional chaining
+console.log(fetchedUserData?.job?.title)
+
 // type UnknownEmployeee = Employee | Admin;
 
 // const printEmployeeInformation = (emp: UnknownEmployeee) => {

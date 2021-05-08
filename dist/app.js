@@ -1,5 +1,6 @@
 "use strict";
 // intersection types
+var _a;
 const e1 = {
     name: "Max",
     priviledges: ["create-server"],
@@ -14,6 +15,13 @@ function addGuard(a, b) {
 ;
 const resultGuard = addGuard("Max", "Schwarz");
 resultGuard.split(" ");
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: { title: 'CEO', description: 'My own company' }
+};
+// optional chaining
+console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
 // type UnknownEmployeee = Employee | Admin;
 // const printEmployeeInformation = (emp: UnknownEmployeee) => {
 //   console.log("Name: " + emp.name);
