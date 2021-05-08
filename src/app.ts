@@ -76,10 +76,10 @@ const v1 = new Car();
 const v2 = new Truck();
 
 const useVehicle = (vehicle: Vehicle) => {
-    vehicle.drive();
-    // instanceof is part of javascript
-    // instanceof could not be used in interfaces because javascript does not compile interfaces
-    // this would only be able to be used with classes
+  vehicle.drive();
+  // instanceof is part of javascript
+  // instanceof could not be used in interfaces because javascript does not compile interfaces
+  // this would only be able to be used with classes
   if (vehicle instanceof Truck) {
     vehicle.loadCargo(1000);
   }
@@ -88,3 +88,31 @@ const useVehicle = (vehicle: Vehicle) => {
 useVehicle(v1);
 
 useVehicle(v2);
+
+// descriminated union types
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+const moveAnimal = (animal: Animal) => {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+  }
+  console.log("Moving at speed " + speed);
+};
+
+moveAnimal({ type: "bird", flyingSpeed: 10 });
