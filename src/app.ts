@@ -49,6 +49,11 @@ const fetchedUserData = {
 // optional chaining
 console.log(fetchedUserData?.job?.title)
 
+// nullish coalescing
+const userInputNullish = null;
+const storedData = userInputNullish ?? 'DEFAULT'
+console.log(storedData)
+
 // type UnknownEmployeee = Employee | Admin;
 
 // const printEmployeeInformation = (emp: UnknownEmployeee) => {

@@ -22,6 +22,10 @@ const fetchedUserData = {
 };
 // optional chaining
 console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+// nullish coalescing
+const userInputNullish = null;
+const storedData = userInputNullish !== null && userInputNullish !== void 0 ? userInputNullish : 'DEFAULT';
+console.log(storedData);
 // type UnknownEmployeee = Employee | Admin;
 // const printEmployeeInformation = (emp: UnknownEmployeee) => {
 //   console.log("Name: " + emp.name);
