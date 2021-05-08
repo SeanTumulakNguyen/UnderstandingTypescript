@@ -48,25 +48,53 @@ accounting.addEmployee("Manu");
 const tech = new ITDepartment("d1", ["Max"]);
 
 class AccountingDepartment extends Department {
-  constructor(id: string, private reports: string[]) {
-    super(id, "IT");
+  private lastReport: string;
+
+  // getter method has to return something
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error("No report found.");
   }
 
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error("Please pass in a value");
+    }
+    this.addReport(value);
+  }
+
+  constructor(id: string, private reports: string[]) {
+    super(id, "IT");
+    this.lastReport = reports[0];
+  }
+
+  // protected, private, public are only used in typescript
+
   addEmployee(name: string) {
-    if (name === 'Max') {
+    if (name === "Max") {
       return;
     }
-    this.employees.push(name)
+    this.employees.push(name);
   }
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printeports() {
     console.log(this.reports);
   }
 }
+
+const finance = new AccountingDepartment("d3", ["Max"]);
+
+// console log as property as it returns this.lastReport
+console.log(finance.mostRecentReport);
+
+finance.mostRecentReport = "";
 
 // this won't work because the variable is private
 // accounting.employees[2] = "Anna";
