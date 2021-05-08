@@ -44,7 +44,7 @@ class ITDepartment extends Department {
   }
 
   describe() {
-    console.log('IT Department')
+    console.log("IT Department");
   }
 }
 
@@ -55,6 +55,7 @@ const tech = new ITDepartment("d1", ["Max"]);
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   // getter method has to return something
   get mostRecentReport() {
@@ -71,13 +72,21 @@ class AccountingDepartment extends Department {
     this.addReport(value);
   }
 
-  constructor(id: string, private reports: string[]) {
-    super(id, "IT");
+  private constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
     this.lastReport = reports[0];
   }
 
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment("d2", []);
+    return this.instance;
+  }
+
   describe() {
-    console.log('Accounting')
+    console.log("Accounting");
   }
 
   // protected, private, public are only used in typescript
@@ -104,7 +113,7 @@ const employee1 = Department.createEmployee("Max");
 
 console.log(employee1);
 
-const finance = new AccountingDepartment("d3", ["Max"]);
+const finance = AccountingDepartment.getInstance();
 
 // console log as property as it returns this.lastReport
 console.log(finance.mostRecentReport);

@@ -37,7 +37,7 @@ class ITDepartment extends Department {
         this.admins = admins;
     }
     describe() {
-        console.log('IT Department');
+        console.log("IT Department");
     }
 }
 // accounting.addEmployee("Max");
@@ -45,7 +45,7 @@ class ITDepartment extends Department {
 const tech = new ITDepartment("d1", ["Max"]);
 class AccountingDepartment extends Department {
     constructor(id, reports) {
-        super(id, "IT");
+        super(id, "Accounting");
         this.reports = reports;
         this.lastReport = reports[0];
     }
@@ -62,8 +62,15 @@ class AccountingDepartment extends Department {
         }
         this.addReport(value);
     }
+    static getInstance() {
+        if (AccountingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment("d2", []);
+        return this.instance;
+    }
     describe() {
-        console.log('Accounting');
+        console.log("Accounting");
     }
     // protected, private, public are only used in typescript
     addEmployee(name) {
@@ -83,7 +90,7 @@ class AccountingDepartment extends Department {
 // call static variables
 const employee1 = Department.createEmployee("Max");
 console.log(employee1);
-const finance = new AccountingDepartment("d3", ["Max"]);
+const finance = AccountingDepartment.getInstance();
 // console log as property as it returns this.lastReport
 console.log(finance.mostRecentReport);
 finance.mostRecentReport = "";
