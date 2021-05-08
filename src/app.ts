@@ -27,111 +27,118 @@ type Numeric = number | boolean;
 type Universal = CombinableIntersection & Numeric;
 
 // type guards
-const AddGuard = (a: CombinableIntersection, b: CombinableIntersection) => {
+// arrow functions not working correct, having to use ES5?
+function addGuard(a: number, b: number): number;
+function addGuard(a: string, b: string): string;
+function addGuard(a: CombinableIntersection, b: CombinableIntersection) {
   if (typeof a === "string" || typeof b === "string") {
     return a.toString() + b.toString();
   }
   return a + b;
 };
 
-type UnknownEmployeee = Employee | Admin;
+const resultGuard = addGuard("Max", "Schwarz");
+resultGuard.split(" ");
 
-const printEmployeeInformation = (emp: UnknownEmployeee) => {
-  console.log("Name: " + emp.name);
-  // using the 'in' keyword checks if string exists in emp
-  // javascript
-  if ("priviledges" in emp) {
-    console.log("Priviledges: " + emp.priviledges);
-  }
+// type UnknownEmployeee = Employee | Admin;
 
-  if ("startDate" in emp) {
-    console.log("Start Date: " + emp.startDate);
-  }
-};
+// const printEmployeeInformation = (emp: UnknownEmployeee) => {
+//   console.log("Name: " + emp.name);
+//   // using the 'in' keyword checks if string exists in emp
+//   // javascript
+//   if ("priviledges" in emp) {
+//     console.log("Priviledges: " + emp.priviledges);
+//   }
 
-printEmployeeInformation({ name: "Manu", startDate: new Date() });
+//   if ("startDate" in emp) {
+//     console.log("Start Date: " + emp.startDate);
+//   }
+// };
 
-// instance of type guard
+// printEmployeeInformation({ name: "Manu", startDate: new Date() });
 
-class Car {
-  drive() {
-    console.log("Driving...");
-  }
-}
+// // instance of type guard
 
-class Truck {
-  drive() {
-    console.log("Driving a truck...");
-  }
+// class Car {
+//   drive() {
+//     console.log("Driving a car...");
+//   }
+// }
 
-  loadCargo(amount: number) {
-    console.log("Loading cargo " + amount);
-  }
-}
+// class Truck {
+//   drive() {
+//     console.log("Driving a truck...");
+//   }
 
-type Vehicle = Car | Truck;
+//   loadCargo(amount: number) {
+//     console.log("Loading cargo " + amount);
+//   }
+// }
 
-const v1 = new Car();
+// type Vehicle = Car | Truck;
 
-const v2 = new Truck();
+// const v1 = new Car();
 
-const useVehicle = (vehicle: Vehicle) => {
-  vehicle.drive();
-  // instanceof is part of javascript
-  // instanceof could not be used in interfaces because javascript does not compile interfaces
-  // this would only be able to be used with classes
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(1000);
-  }
-};
+// const v2 = new Truck();
 
-useVehicle(v1);
+// const useVehicle = (vehicle: Vehicle) => {
+//   vehicle.drive();
+//   // instanceof is part of javascript
+//   // instanceof could not be used in interfaces because javascript does not compile interfaces
+//   // this would only be able to be used with classes
+//   if (vehicle instanceof Truck) {
+//     vehicle.loadCargo(1000);
+//   }
+// };
 
-useVehicle(v2);
+// useVehicle(v1);
 
-// descriminated union types
-interface Bird {
-  type: "bird";
-  flyingSpeed: number;
-}
+// useVehicle(v2);
 
-interface Horse {
-  type: "horse";
-  runningSpeed: number;
-}
+// // descriminated union types
+// interface Bird {
+//   type: "bird";
+//   flyingSpeed: number;
+// }
 
-type Animal = Bird | Horse;
+// interface Horse {
+//   type: "horse";
+//   runningSpeed: number;
+// }
 
-const moveAnimal = (animal: Animal) => {
-  let speed;
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-      break;
-  }
-  console.log("Moving at speed " + speed);
-};
+// type Animal = Bird | Horse;
 
-moveAnimal({ type: "bird", flyingSpeed: 10 });
+// const moveAnimal = (animal: Animal) => {
+//   let speed;
+//   switch (animal.type) {
+//     case "bird":
+//       speed = animal.flyingSpeed;
+//       break;
+//     case "horse":
+//       speed = animal.runningSpeed;
+//       break;
+//   }
+//   console.log("Moving at speed " + speed);
+// };
 
-// type casting
+// moveAnimal({ type: "bird", flyingSpeed: 10 });
 
-// const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
-const userInputElement = document.getElementById("user-input");
+// // type casting
 
-if (userInputElement) {
-  (userInputElement as HTMLInputElement).value = "Hi there!";
-}
+// // const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
+// const userInputElement = document.getElementById("user-input");
 
-interface ErrorContainer {
-  // { email: 'Not a valid email', username: 'Must start with a character'}
-  [prop: string]: string;
+// if (userInputElement) {
+//   (userInputElement as HTMLInputElement).value = "Hi there!";
+// }
 
-}
+// interface ErrorContainer {
+//   // { email: 'Not a valid email', username: 'Must start with a character'}
+//   [prop: string]: string;
 
-const errorBag: ErrorContainer = {
-    email: 'Not a valid email!'
-}
+// }
+
+// const errorBag: ErrorContainer = {
+//     email: 'Not a valid email!',
+//     username: 'Must start with a capital character!'
+// }
