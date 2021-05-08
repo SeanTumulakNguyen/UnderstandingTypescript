@@ -2,13 +2,24 @@
 // describes the structure of an object
 // how the object should look like
 
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let addFunction: AddFn;
+
+addFunction = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
 interface Named {
   readonly name: string;
 }
 
 interface Greetable extends Named {
   // initialized only once
-//   readonly name: string;
+  //   readonly name: string;
 
   greet(phrase: string): void;
 }

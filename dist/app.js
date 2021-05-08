@@ -2,6 +2,10 @@
 // interfaces
 // describes the structure of an object
 // how the object should look like
+let addFunction;
+addFunction = (n1, n2) => {
+    return n1 + n2;
+};
 class Person {
     constructor(n) {
         this.age = 30;
