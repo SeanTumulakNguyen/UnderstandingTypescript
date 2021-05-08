@@ -1,56 +1,27 @@
-// interfaces
-// describes the structure of an object
-// how the object should look like
+// intersection types
 
-// type AddFn = (a: number, b: number) => number;
-interface AddFn {
-  (a: number, b: number): number;
-}
-
-let addFunction: AddFn;
-
-addFunction = (n1: number, n2: number) => {
-  return n1 + n2;
+// could use interface types and extending the interfaces down below as well
+type Admin = {
+    name: string;
+    priviledges: string[];
 };
 
-interface Named {
-  readonly name?: string;
-  // option variable with a ?
-  // methods can be optional too
-  outputName?: string;
+type Employee = {
+    name: string;
+    startDate: Date;
 }
 
-interface Greetable extends Named {
-  // initialized only once
-  //   readonly name: string;
+// interface ElevatedEmployee extends Admin, Employee { }
 
-  greet(phrase: string): void;
+type ElevatedEmployee = Admin & Employee;
+
+const e1: ElevatedEmployee = {
+    name: 'Max',
+    priviledges: ['create-server'],
+    startDate: new Date()
 }
 
-class Person implements Greetable {
-  name?: string;
-  age = 30;
+type CombinableIntersection = string | number;
+type Numeric = number | boolean
 
-  constructor(n?: string) {
-    if (n) {
-      this.name = n;
-    }
-  }
-
-  greet(phrase: string) {
-    if (this.name) {
-      console.log(phrase + " " + this.name);
-    } else {
-      console.log("Hi!");
-    }
-  }
-}
-
-let user1: Greetable;
-
-// user1 = new Person("Max");
-user1 = new Person();
-
-user1.greet("Hi there - I am");
-
-console.log(user1);
+type Universal = CombinableIntersection & Numeric

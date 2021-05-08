@@ -1,29 +1,7 @@
 "use strict";
-// interfaces
-// describes the structure of an object
-// how the object should look like
-let addFunction;
-addFunction = (n1, n2) => {
-    return n1 + n2;
+// intersection types
+const e1 = {
+    name: 'Max',
+    priviledges: ['create-server'],
+    startDate: new Date()
 };
-class Person {
-    constructor(n) {
-        this.age = 30;
-        if (n) {
-            this.name = n;
-        }
-    }
-    greet(phrase) {
-        if (this.name) {
-            console.log(phrase + " " + this.name);
-        }
-        else {
-            console.log("Hi!");
-        }
-    }
-}
-let user1;
-// user1 = new Person("Max");
-user1 = new Person();
-user1.greet("Hi there - I am");
-console.log(user1);
