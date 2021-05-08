@@ -5,7 +5,7 @@
 // define how objects look like, properties and methods they have
 // make creation of multiple, similar objects much easier
 
-class Department {
+abstract class Department {
   // publci variable, able to be accessed from outside
   // name: string;
   // private variables are only accessible from insite the class
@@ -21,9 +21,7 @@ class Department {
     return { name: name };
   }
 
-  describe(this: Department) {
-    console.log("Department: " + this.name);
-  }
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -35,8 +33,8 @@ class Department {
   }
 }
 
-const accounting = new Department("D1", "Accounting");
-console.log(accounting);
+// const accounting = new Department("D1", "Accounting");
+// console.log(accounting);
 
 class ITDepartment extends Department {
   // inheriting from Department
@@ -44,10 +42,14 @@ class ITDepartment extends Department {
     super(id, "IT");
     this.admins = admins;
   }
+
+  describe() {
+    console.log('IT Department')
+  }
 }
 
-accounting.addEmployee("Max");
-accounting.addEmployee("Manu");
+// accounting.addEmployee("Max");
+// accounting.addEmployee("Manu");
 
 const tech = new ITDepartment("d1", ["Max"]);
 
@@ -72,6 +74,10 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, "IT");
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log('Accounting')
   }
 
   // protected, private, public are only used in typescript
@@ -108,10 +114,10 @@ finance.mostRecentReport = "";
 // this won't work because the variable is private
 // accounting.employees[2] = "Anna";
 
-accounting.describe();
-accounting.printEmployeeInformation();
+// accounting.describe();
+// accounting.printEmployeeInformation();
 
-const accountingCopy = { name: "DUMMY", describe: accounting.describe };
+// const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 
 // accountingCopy.describe();
 

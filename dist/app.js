@@ -19,9 +19,6 @@ class Department {
     static createEmployee(name) {
         return { name: name };
     }
-    describe() {
-        console.log("Department: " + this.name);
-    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -30,8 +27,8 @@ class Department {
         console.log(this.employees);
     }
 }
-const accounting = new Department("D1", "Accounting");
-console.log(accounting);
+// const accounting = new Department("D1", "Accounting");
+// console.log(accounting);
 class ITDepartment extends Department {
     // inheriting from Department
     constructor(id, admins) {
@@ -39,9 +36,12 @@ class ITDepartment extends Department {
         this.admins = admins;
         this.admins = admins;
     }
+    describe() {
+        console.log('IT Department');
+    }
 }
-accounting.addEmployee("Max");
-accounting.addEmployee("Manu");
+// accounting.addEmployee("Max");
+// accounting.addEmployee("Manu");
 const tech = new ITDepartment("d1", ["Max"]);
 class AccountingDepartment extends Department {
     constructor(id, reports) {
@@ -61,6 +61,9 @@ class AccountingDepartment extends Department {
             throw new Error("Please pass in a value");
         }
         this.addReport(value);
+    }
+    describe() {
+        console.log('Accounting');
     }
     // protected, private, public are only used in typescript
     addEmployee(name) {
@@ -86,8 +89,8 @@ console.log(finance.mostRecentReport);
 finance.mostRecentReport = "";
 // this won't work because the variable is private
 // accounting.employees[2] = "Anna";
-accounting.describe();
-accounting.printEmployeeInformation();
-const accountingCopy = { name: "DUMMY", describe: accounting.describe };
+// accounting.describe();
+// accounting.printEmployeeInformation();
+// const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 // accountingCopy.describe();
 // ^ constructor functions and using 'this' keyword
