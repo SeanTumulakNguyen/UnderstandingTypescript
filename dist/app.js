@@ -1,106 +1,68 @@
 "use strict";
-// intersection types
-var _a;
-const e1 = {
-    name: "Max",
-    priviledges: ["create-server"],
-    startDate: new Date(),
+// generic type
+// const names: Array<string> = []; // string[]
+// names[0].split(' ');
+// promise type
+// const promise: Promise<string> = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("This is done!");
+//   }, 2000);
+// });
+// promise.then((data) => {
+//   data.split(" ");
+// });
+// creating generic function
+const merge = (objA, objB) => {
+    return Object.assign(objA, objB);
 };
-function addGuard(a, b) {
-    if (typeof a === "string" || typeof b === "string") {
-        return a.toString() + b.toString();
+// console.log(merge({ name: "Max" }, { age: 30 }));
+const mergedObj = merge({ name: "Max" }, { age: 30 });
+console.log(mergedObj.age);
+const countAndPrint = (element) => {
+    let descriptionText = "Got no value.";
+    if (element.length > 0) {
+        descriptionText = "Got " + element.length + " elements.";
     }
-    return a + b;
-}
-;
-const resultGuard = addGuard("Max", "Schwarz");
-resultGuard.split(" ");
-const fetchedUserData = {
-    id: 'u1',
-    name: 'Max',
-    job: { title: 'CEO', description: 'My own company' }
+    return [element, descriptionText];
 };
-// optional chaining
-console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
-// nullish coalescing
-const userInputNullish = null;
-const storedData = userInputNullish !== null && userInputNullish !== void 0 ? userInputNullish : 'DEFAULT';
-console.log(storedData);
-// type UnknownEmployeee = Employee | Admin;
-// const printEmployeeInformation = (emp: UnknownEmployeee) => {
-//   console.log("Name: " + emp.name);
-//   // using the 'in' keyword checks if string exists in emp
-//   // javascript
-//   if ("priviledges" in emp) {
-//     console.log("Priviledges: " + emp.priviledges);
-//   }
-//   if ("startDate" in emp) {
-//     console.log("Start Date: " + emp.startDate);
-//   }
-// };
-// printEmployeeInformation({ name: "Manu", startDate: new Date() });
-// // instance of type guard
-// class Car {
-//   drive() {
-//     console.log("Driving a car...");
-//   }
-// }
-// class Truck {
-//   drive() {
-//     console.log("Driving a truck...");
-//   }
-//   loadCargo(amount: number) {
-//     console.log("Loading cargo " + amount);
-//   }
-// }
-// type Vehicle = Car | Truck;
-// const v1 = new Car();
-// const v2 = new Truck();
-// const useVehicle = (vehicle: Vehicle) => {
-//   vehicle.drive();
-//   // instanceof is part of javascript
-//   // instanceof could not be used in interfaces because javascript does not compile interfaces
-//   // this would only be able to be used with classes
-//   if (vehicle instanceof Truck) {
-//     vehicle.loadCargo(1000);
-//   }
-// };
-// useVehicle(v1);
-// useVehicle(v2);
-// // descriminated union types
-// interface Bird {
-//   type: "bird";
-//   flyingSpeed: number;
-// }
-// interface Horse {
-//   type: "horse";
-//   runningSpeed: number;
-// }
-// type Animal = Bird | Horse;
-// const moveAnimal = (animal: Animal) => {
-//   let speed;
-//   switch (animal.type) {
-//     case "bird":
-//       speed = animal.flyingSpeed;
-//       break;
-//     case "horse":
-//       speed = animal.runningSpeed;
-//       break;
-//   }
-//   console.log("Moving at speed " + speed);
-// };
-// moveAnimal({ type: "bird", flyingSpeed: 10 });
-// // type casting
-// // const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
-// const userInputElement = document.getElementById("user-input");
-// if (userInputElement) {
-//   (userInputElement as HTMLInputElement).value = "Hi there!";
-// }
-// interface ErrorContainer {
-//   // { email: 'Not a valid email', username: 'Must start with a character'}
-//   [prop: string]: string;
-// }
-// const errorBag: ErrorContainer = {
-//     email: 'Not a valid email!',
-//     username: 'Must start with a capital character!'
-// }
+console.log(countAndPrint("Hi there!"));
+// keyof constraint
+const extractAndConvert = (obj, key) => {
+    return "Value: " + obj[key];
+};
+extractAndConvert({ name: "Max" }, "name");
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), -1); // -1
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
+// using partial
+const createCourseGoal = (title, description, date) => {
+    // return {title: title, description: description, date: Date}
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+};
+// read only strings
+const names1 = ["Max", "Anna"];
+// names1.push("Manu");

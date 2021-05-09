@@ -38,17 +38,20 @@ const countAndPrint = <T extends Lengthy>(element: T): [T, string] => {
 console.log(countAndPrint("Hi there!"));
 
 // keyof constraint
-const extractAndConvert = <T extends object, U extends keyof T(obj: T, key: U) => {
-  return  'Value: ' + obj[key];
+const extractAndConvert = <T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) => {
+  return "Value: " + obj[key];
 };
 
-extractAndConvert({ name: 'Max' }, 'name')
+extractAndConvert({ name: "Max" }, "name");
 
 class DataStorage<T extends string | number | boolean> {
-  private data: T[] = []
+  private data: T[] = [];
 
   addItem(item: T) {
-    this.data.push(item)
+    this.data.push(item);
   }
 
   removeItem(item: T) {
@@ -59,15 +62,15 @@ class DataStorage<T extends string | number | boolean> {
   }
 
   getItems() {
-    return [...this.data]
+    return [...this.data];
   }
 }
 
 const textStorage = new DataStorage<string>();
-textStorage.addItem('Max')
-textStorage.addItem('Manu')
-textStorage.removeItem('Max')
-console.log(textStorage.getItems())
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
+console.log(textStorage.getItems());
 
 const numberStorage = new DataStorage<number | string>();
 
@@ -78,3 +81,27 @@ const numberStorage = new DataStorage<number | string>();
 // // ...
 // objStorage.removeItem({name: 'Max'})
 // console.log(objStorage.getItems())
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+// using partial
+const createCourseGoal = (
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal => {
+  // return {title: title, description: description, date: Date}
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+};
+
+// read only strings
+const names1: Readonly<string[]> = ["Max", "Anna"];
+// names1.push("Manu");
