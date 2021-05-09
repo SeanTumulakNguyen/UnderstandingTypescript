@@ -21,4 +21,18 @@ const merge = <T extends object, U extends object>(objA: T, objB: U) => {
 
 // console.log(merge({ name: "Max" }, { age: 30 }));
 const mergedObj = merge({ name: "Max" }, { age: 30 });
-console.log(mergedObj.age)
+console.log(mergedObj.age);
+
+interface Lengthy {
+  length: number;
+}
+
+const countAndPrint = <T extends Lengthy>(element: T): [T, string] => {
+  let descriptionText = "Got no value.";
+  if (element.length > 0) {
+    descriptionText = "Got " + element.length + " elements.";
+  }
+  return [element, descriptionText];
+};
+
+console.log(countAndPrint("Hi there!"));
