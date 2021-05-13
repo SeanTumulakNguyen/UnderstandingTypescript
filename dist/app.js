@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 // decorator factories
 const Logger = (logString) => {
-    console.log('LOGGER FACTORY');
+    console.log("LOGGER FACTORY");
     return function (constructor) {
         console.log(logString);
         console.log(constructor);
@@ -15,14 +15,14 @@ const Logger = (logString) => {
 };
 // template decorator
 const withTemplate = (template, hookId) => {
-    console.log('LOGGER TEMPLATE');
+    console.log("LOGGER TEMPLATE");
     return function (constructor) {
-        console.log('Rendering template');
+        console.log("Rendering template");
         const hookEl = document.getElementById(hookId);
         const p = new constructor();
         if (hookEl) {
             hookEl.innerHTML = template;
-            hookEl.querySelector('h1').textContent = p.name;
+            hookEl.querySelector("h1").textContent = p.name;
         }
     };
 };
@@ -34,8 +34,33 @@ let PersonDecorator = class PersonDecorator {
     }
 };
 PersonDecorator = __decorate([
-    Logger('LOGGING'),
+    Logger("LOGGING"),
     withTemplate("<h1>My Person Object</h1>", "app")
 ], PersonDecorator);
 const pers = new PersonDecorator();
 console.log(pers);
+// ---
+const Log = (target, propertyName) => {
+    console.log('Property decorator!');
+    console.log(target, propertyName);
+};
+class Product {
+    constructor(t, p) {
+        this.title = t;
+        this._price = p;
+    }
+    set price(val) {
+        if (val > 0) {
+            this._price = val;
+        }
+        else {
+            throw new Error('Invalid price - should be positive!');
+        }
+    }
+    getPriceWithTax(tax) {
+        return this._price * (1 + tax);
+    }
+}
+__decorate([
+    Log
+], Product.prototype, "title", void 0);
