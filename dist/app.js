@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 // decorator factories
 const Logger = (logString) => {
+    console.log('LOGGER FACTORY');
     return function (constructor) {
         console.log(logString);
         console.log(constructor);
@@ -14,7 +15,9 @@ const Logger = (logString) => {
 };
 // template decorator
 const withTemplate = (template, hookId) => {
+    console.log('LOGGER TEMPLATE');
     return function (constructor) {
+        console.log('Rendering template');
         const hookEl = document.getElementById(hookId);
         const p = new constructor();
         if (hookEl) {
@@ -23,6 +26,7 @@ const withTemplate = (template, hookId) => {
         }
     };
 };
+// decorators run bottom up
 let PersonDecorator = class PersonDecorator {
     constructor() {
         this.name = "Max";
@@ -30,6 +34,7 @@ let PersonDecorator = class PersonDecorator {
     }
 };
 PersonDecorator = __decorate([
+    Logger('LOGGING'),
     withTemplate("<h1>My Person Object</h1>", "app")
 ], PersonDecorator);
 const pers = new PersonDecorator();
