@@ -1,68 +1,36 @@
 "use strict";
-// generic type
-// const names: Array<string> = []; // string[]
-// names[0].split(' ');
-// promise type
-// const promise: Promise<string> = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve("This is done!");
-//   }, 2000);
-// });
-// promise.then((data) => {
-//   data.split(" ");
-// });
-// creating generic function
-const merge = (objA, objB) => {
-    return Object.assign(objA, objB);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-// console.log(merge({ name: "Max" }, { age: 30 }));
-const mergedObj = merge({ name: "Max" }, { age: 30 });
-console.log(mergedObj.age);
-const countAndPrint = (element) => {
-    let descriptionText = "Got no value.";
-    if (element.length > 0) {
-        descriptionText = "Got " + element.length + " elements.";
-    }
-    return [element, descriptionText];
+// decorator factories
+const Logger = (logString) => {
+    return function (constructor) {
+        console.log(logString);
+        console.log(constructor);
+    };
 };
-console.log(countAndPrint("Hi there!"));
-// keyof constraint
-const extractAndConvert = (obj, key) => {
-    return "Value: " + obj[key];
-};
-extractAndConvert({ name: "Max" }, "name");
-class DataStorage {
-    constructor() {
-        this.data = [];
-    }
-    addItem(item) {
-        this.data.push(item);
-    }
-    removeItem(item) {
-        if (this.data.indexOf(item) === -1) {
-            return;
+// template decorator
+const withTemplate = (template, hookId) => {
+    return function (constructor) {
+        const hookEl = document.getElementById(hookId);
+        const p = new constructor();
+        if (hookEl) {
+            hookEl.innerHTML = template;
+            hookEl.querySelector('h1').textContent = p.name;
         }
-        this.data.splice(this.data.indexOf(item), -1); // -1
-    }
-    getItems() {
-        return [...this.data];
-    }
-}
-const textStorage = new DataStorage();
-textStorage.addItem("Max");
-textStorage.addItem("Manu");
-textStorage.removeItem("Max");
-console.log(textStorage.getItems());
-const numberStorage = new DataStorage();
-// using partial
-const createCourseGoal = (title, description, date) => {
-    // return {title: title, description: description, date: Date}
-    let courseGoal = {};
-    courseGoal.title = title;
-    courseGoal.description = description;
-    courseGoal.completeUntil = date;
-    return courseGoal;
+    };
 };
-// read only strings
-const names1 = ["Max", "Anna"];
-// names1.push("Manu");
+let PersonDecorator = class PersonDecorator {
+    constructor() {
+        this.name = "Max";
+        console.log("Creating person object...");
+    }
+};
+PersonDecorator = __decorate([
+    withTemplate("<h1>My Person Object</h1>", "app")
+], PersonDecorator);
+const pers = new PersonDecorator();
+console.log(pers);
