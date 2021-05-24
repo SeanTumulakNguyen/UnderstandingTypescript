@@ -10,14 +10,20 @@ const Logger = (logString: string) => {
 // template decorator
 const withTemplate = (template: string, hookId: string) => {
   console.log("LOGGER TEMPLATE");
-  return function (constructor: any) {
-    console.log("Rendering template");
-    const hookEl = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector("h1")!.textContent = p.name;
-    }
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    originalConstructor: T
+  ) {
+    return class extends originalConstructor {
+      constructor(...args: any[]) {
+        super();
+        console.log("Rendering template");
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector("h1")!.textContent = this.name;
+        }
+      }
+    };
   };
 };
 // decorators run bottom up
@@ -38,30 +44,34 @@ console.log(pers);
 // ---
 
 const Log = (target: any, propertyName: string | symbol) => {
-  console.log('Property decorator!')
-  console.log(target, propertyName)
-}
+  console.log("Property decorator!");
+  console.log(target, propertyName);
+};
 
 const Log2 = (target: any, name: string, descriptor: PropertyDescriptor) => {
-  console.log('Accessor decorator!')
-  console.log(target)
-  console.log(name)
-  console.log(descriptor)
-}
+  console.log("Accessor decorator!");
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+};
 
-const Log3 = (target: any, name: string | Symbol, descriptor: PropertyDescriptor) => {
-  console.log('Method decorator!')
-  console.log(target)
-  console.log(name)
-  console.log(descriptor)
-}
+const Log3 = (
+  target: any,
+  name: string | Symbol,
+  descriptor: PropertyDescriptor
+) => {
+  console.log("Method decorator!");
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+};
 
 const Log4 = (target: any, name: string | Symbol, position: number) => {
-  console.log('Parameter decorator!')
-  console.log(target)
-  console.log(name)
-  console.log(position)
-}
+  console.log("Parameter decorator!");
+  console.log(target);
+  console.log(name);
+  console.log(position);
+};
 
 class Product {
   @Log
@@ -72,9 +82,8 @@ class Product {
   set price(val: number) {
     if (val > 0) {
       this._price = val;
-    }
-    else {
-      throw new Error('Invalid price - should be positive!')
+    } else {
+      throw new Error("Invalid price - should be positive!");
     }
   }
 
@@ -88,3 +97,6 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+
+const p1 = new Product("Book", 19);
+const p2 = new Product("Book 2", 29);
