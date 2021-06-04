@@ -21,7 +21,7 @@ const withTemplate = (template, hookId) => {
     console.log("LOGGER TEMPLATE");
     return function (originalConstructor) {
         return class extends originalConstructor {
-            constructor(...args) {
+            constructor(..._) {
                 super();
                 console.log("Rendering template");
                 const hookEl = document.getElementById(hookId);
@@ -44,8 +44,8 @@ PersonDecorator = __decorate([
     Logger("LOGGING"),
     withTemplate("<h1>My Person Object</h1>", "app")
 ], PersonDecorator);
-const pers = new PersonDecorator();
-console.log(pers);
+// const pers = new PersonDecorator();
+// console.log(pers);
 // ---
 const Log = (target, propertyName) => {
     console.log("Property decorator!");
