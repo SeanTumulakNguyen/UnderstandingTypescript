@@ -20,6 +20,19 @@ const autobind = (_, _2, descriptor) => {
 // Project Class
 class ProjectInput {
     constructor() {
+        this.gatherUserInput = () => {
+            const enteredTitle = this.titleInputElement.value;
+            const enteredDescription = this.descriptionInputElement.value;
+            const enteredPeople = this.peopleInputElement.value;
+            if (enteredTitle.trim().length === 0 || enteredDescription.trim().length === 0 || enteredPeople.trim().length === 0) {
+            }
+        };
+        this.configure = () => {
+            this.element.addEventListener('submit', this.submitHandler);
+        };
+        this.attach = () => {
+            this.hostElement.insertAdjacentElement("afterbegin", this.element);
+        };
         this.templateElement = document.getElementById("project-input");
         this.hostElement = document.getElementById("app");
         const importedNode = document.importNode(this.templateElement.content, true);
@@ -33,15 +46,7 @@ class ProjectInput {
     }
     submitHandler(event) {
         event.preventDefault();
-        console.log(this.titleInputElement.value);
-        console.log(this.descriptionInputElement.value);
-        console.log(this.peopleInputElement.value);
-    }
-    configure() {
-        this.element.addEventListener('submit', this.submitHandler);
-    }
-    attach() {
-        this.hostElement.insertAdjacentElement("afterbegin", this.element);
+        const userInput = this.gatherUserInput();
     }
 }
 __decorate([
