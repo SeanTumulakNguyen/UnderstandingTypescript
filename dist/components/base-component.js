@@ -1,5 +1,5 @@
 // Component Base Class
-export class Component {
+export default class Component {
     constructor(templateId, hostElementId, insertAtStart, newElementId) {
         this.attach = (insertAtBeginning) => {
             this.hostElement.insertAdjacentElement(insertAtBeginning ? "afterbegin" : "beforeend", this.element);
