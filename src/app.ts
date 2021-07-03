@@ -1,5 +1,6 @@
 import "reflect-metadata"
 import {plainToClass} from 'class-transformer'
+import {} from 'class-validator'
 
 import { ProductSectionTwelve } from "product.model";
 
