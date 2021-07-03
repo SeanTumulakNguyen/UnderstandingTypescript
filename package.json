@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.170",
     "clean-webpack-plugin": "*",
     "lite-server": "^2.6.1",
     "ts-loader": "^9.2.3",
@@ -21,7 +22,6 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.170",
     "lodash": "^4.17.21"
   }
 }
