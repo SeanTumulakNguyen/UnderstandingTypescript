@@ -1,9 +1,9 @@
-import "reflect-metadata"
-import {plainToClass} from 'class-transformer'
-import {} from 'class-validator'
+// import "reflect-metadata"
+// import {plainToClass} from 'class-transformer'
+// import {} from 'class-validator'
 
-import { ProductSectionTwelve } from "./product.model";
+// import { ProductSectionTwelve } from "./product.model";
 
-const p1 = new ProductSectionTwelve('A Book', 12.99);
+// const p1 = new ProductSectionTwelve('A Book', 12.99);
 
-console.log(p1.getInformation())
+// console.log(p1.getInformation())

@@ -1,13 +1,13 @@
-export class ProductSectionTwelve {
-    title: string;
-    price: number;
+// export class ProductSectionTwelve {
+//     title: string;
+//     price: number;
 
-    constructor(t: string, p: number) {
-        this.title = t;
-        this.price = p;
-    }
+//     constructor(t: string, p: number) {
+//         this.title = t;
+//         this.price = p;
+//     }
 
-    getInformation() {
-        return [this.title, `$${this.price}`]
-    }
-}
+//     getInformation() {
+//         return [this.title, `$${this.price}`]
+//     }
+// }
